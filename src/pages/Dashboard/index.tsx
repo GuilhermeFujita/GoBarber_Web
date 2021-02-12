@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { Container, Header, HeaderContent, Profile, Content, Schedule, NextAppointment, Calendar } from './styles'
+import { Container, Header, HeaderContent, Profile, Content, Schedule, NextAppointment, Section, Appointment, Calendar } from './styles'
 
 import logoImg from '../../assets/logo.svg'
 import { FiClock, FiPower } from 'react-icons/fi';
 import { useAuth } from '../../hooks/auth';
 
 const Dashboard: React.FC = () => {
+  const [selectedDate, setselectedDate] = useState(new Date())
+
   const { signOut, user } = useAuth();
 
   return (
@@ -50,6 +52,53 @@ const Dashboard: React.FC = () => {
               </span>
             </div>
           </NextAppointment>
+
+          <Section>
+            <strong>Manhã</strong>
+
+            <Appointment>
+              <span>
+                <FiClock />
+                08:00
+              </span>
+
+              <div>
+                <img src="https://avatars.githubusercontent.com/u/19476724?s=460&u=92aa4e484ed429c63b03fb2af389bc5a94aed945&v=4" alt="Guilherme Fujita" />
+
+                <strong>Guilherme Fujita</strong>
+              </div>
+            </Appointment>
+            <Appointment>
+              <span>
+                <FiClock />
+                08:00
+              </span>
+
+              <div>
+                <img src="https://avatars.githubusercontent.com/u/19476724?s=460&u=92aa4e484ed429c63b03fb2af389bc5a94aed945&v=4" alt="Guilherme Fujita" />
+
+                <strong>Guilherme Fujita</strong>
+              </div>
+            </Appointment>
+          </Section>
+
+          <Section>
+            <strong>Tarde</strong>
+
+            <Appointment>
+              <span>
+                <FiClock />
+                08:00
+              </span>
+
+              <div>
+                <img src="https://avatars.githubusercontent.com/u/19476724?s=460&u=92aa4e484ed429c63b03fb2af389bc5a94aed945&v=4" alt="Guilherme Fujita" />
+
+                <strong>Guilherme Fujita</strong>
+              </div>
+            </Appointment>
+          </Section>
+
         </Schedule>
         <Calendar />
       </Content>
