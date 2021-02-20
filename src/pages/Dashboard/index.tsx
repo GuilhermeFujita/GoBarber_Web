@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { isToday, format, parse } from 'date-fns';
+import { isToday, format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR'
 
 import { Container, Header, HeaderContent, Profile, Content, Schedule, NextAppointment, Section, Appointment, Calendar } from './styles'
@@ -11,6 +11,7 @@ import { FiClock, FiPower } from 'react-icons/fi';
 import { useAuth } from '../../hooks/auth';
 import api from '../../services/api';
 import { isAfter, parseISO } from 'date-fns/esm';
+import { Link } from 'react-router-dom';
 
 interface MonthAvailabilityItem {
   day: number;
@@ -117,7 +118,7 @@ const Dashboard: React.FC = () => {
     return appointments.find(appointment => {
       isAfter(parseISO(appointment.date), new Date())
     })
-  }, [selectedDate, appointments]);
+  }, [appointments]);
 
   return (
     <Container>
@@ -130,7 +131,7 @@ const Dashboard: React.FC = () => {
               alt={user.name} />
             <div>
               <span>Bem vindo,</span>
-              <strong>{user.name}</strong>
+              <Link to="/profile"><strong>{user.name}</strong></Link>
             </div>
           </Profile>
           <button type="button" onClick={signOut}>
